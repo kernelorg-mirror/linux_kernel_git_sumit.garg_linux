@@ -26,7 +26,6 @@
 /delete-node/ &adsp_mem;
 /delete-node/ &cdsp_mem;
 /delete-node/ &video_mem;
-/delete-node/ &wlan_ce_mem;
 /delete-node/ &wpss_mem;
 /delete-node/ &xbl_mem;
 
@@ -1274,10 +1273,18 @@
 };
 
 &wifi {
-	memory-region = <&wlan_fw_mem>;
 	qcom,calibration-variant = "Qualcomm_rb3gen2";
 
 	status = "okay";
+
+	wifi-firmware {
+		/*
+		 * NOTE: unlike SC7280 Chrome platforms, SID 0x1c03 is used for
+		 * uploading the firmware over MHI on RB3 Gen 2.
+		 */
+		iommus = <&apps_smmu 0x1c03 0x1>;
+	};
+
 };
 
 /* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
