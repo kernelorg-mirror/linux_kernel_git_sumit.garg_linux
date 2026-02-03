@@ -16,6 +16,7 @@ config QCOM_PAS
 
 config QCOM_SCM
 	select QCOM_TZMEM
+	select QCOM_PAS
 	tristate
 
 config QCOM_TZMEM
